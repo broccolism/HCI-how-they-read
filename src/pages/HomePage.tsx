@@ -1,3 +1,4 @@
+import { Input } from "@material-ui/core";
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import {
@@ -6,8 +7,8 @@ import {
 } from "../components/layouts/StyledSimpleLayout";
 import NextButton from "../components/NextButton";
 import CustomPath from "../constants/path";
-import customColors from "../styles/colors";
-import customFonts from "../styles/fonts";
+import customColors from "../constants/styles/colors";
+import customFonts from "../constants/styles/fonts";
 
 type HomeStep = 0 | 1 | 2;
 
@@ -39,7 +40,7 @@ function HomePage() {
               <br />
               "Kandel E. R. and Mary W. C. (2014)&nbsp;
               <span className="italic">
-                현대인의 심리 상태와 시각적 지각 능력 간 의존도 연구
+                전자 디스플레이에서의 시신경 활성도 연구 방법
               </span>
               , ACM Inroads Volume 7, Issue 4, CHI, 113-128"
               <br />
@@ -50,19 +51,29 @@ function HomePage() {
       case 1:
         return (
           <Root key={step}>
-            10분 내외의 테스트를 통해 자신의 심리 상태와 그에 따른 시각적 인지
-            능력을 알아볼 수 있습니다.
+            <div>
+              10분 내외의 간단한 테스트를 통해 자신의
+              <span className="bold"> 눈의 나이 </span>를 알아볼 수 있습니다.
+            </div>
           </Root>
         );
       case 2:
         return (
-          <Root key={step}>
-            <div>
-              정확한 결과를 위해 휴대폰 밝기를&nbsp;
-              <span className="accent">50% 이상</span>으로 맞추고, 테스트를 하는
-              동안 <span className="accent">밝기를 변경하지 마세요.</span>
-            </div>
-          </Root>
+          <StyledColumn>
+            <Root key={step}>
+              <div>
+                정확한 결과를 위해 휴대폰 밝기를&nbsp;
+                <span className="accent">50% 이상</span>으로 맞추고, 테스트를
+                하는 동안&nbsp;
+                <span className="accent">밝기를 변경하지 마세요.</span>
+              </div>
+            </Root>
+            <div>밝기를 몇 %로 지정했나요?</div>
+            <Input
+              placeholder="숫자만 입력하세요."
+              inputProps={{ "aria-label": "description" }}
+            />
+          </StyledColumn>
         );
     }
   };
@@ -96,6 +107,10 @@ const Root = styled.div`
 
   .italic {
     font-style: italic;
+  }
+
+  .bold {
+    font-weight: 700;
   }
 
   .accent {

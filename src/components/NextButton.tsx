@@ -1,6 +1,6 @@
 import { MdNavigateNext } from "react-icons/md";
 import styled from "styled-components";
-import customColors from "../styles/colors";
+import customColors from "../constants/styles/colors";
 
 type NextButtonProps = {
   onClick: () => void;

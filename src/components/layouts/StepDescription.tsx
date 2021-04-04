@@ -2,7 +2,7 @@ import styled from "styled-components";
 import CustomPath from "../../constants/path";
 import { getColorTestKeyword } from "../../constants/testContents";
 import { ColorPageNo } from "../../constants/types";
-import customFonts from "../../styles/fonts";
+import customFonts from "../../constants/styles/fonts";
 import { StyledColumn, StyledEmptyDiv } from "./StyledSimpleLayout";
 
 type Props = {
@@ -21,7 +21,7 @@ function StepDescription({ colorPageNo }: Props) {
       case CustomPath.QUESTION:
         return <Emoji size="40px">🧐</Emoji>;
       case CustomPath.RESULT:
-        return <Emoji size="40px">💡</Emoji>;
+        return <Emoji size="40px">🎉</Emoji>;
       case CustomPath.HOME:
         return <Emoji size="40px">👀</Emoji>;
     }
@@ -38,11 +38,11 @@ function StepDescription({ colorPageNo }: Props) {
       case CustomPath.SPEED_TEST:
         return "무엇이 지나갔나요?";
       case CustomPath.QUESTION:
-        return "잉";
+        return "거의 다 왔습니다.";
       case CustomPath.RESULT:
-        return "잉";
+        return "감사합니다!";
       case CustomPath.HOME:
-        return "얼마나 잘 볼 수 있나요?";
+        return "내 눈은 몇 살일까요?";
     }
   };
 

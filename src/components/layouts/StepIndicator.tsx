@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CustomPath from "../../constants/path";
 
-import customColors from "../../styles/colors";
+import customColors from "../../constants/styles/colors";
 
 function StepIndicator() {
   const curUrlPath = window.location.pathname as CustomPath;

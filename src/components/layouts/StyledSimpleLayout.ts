@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import customColors from "../../styles/colors";
 
-type AxisType = "start" | "center" | "end";
+type AxisType = "start" | "center" | "end" | "flex-end";
 
 type AxisProps = {
   mainAxisAlignment?: AxisType;

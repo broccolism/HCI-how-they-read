@@ -6,11 +6,12 @@ import {
 import MovingBox from "../components/MovingBox";
 import NextButton from "../components/NextButton";
 import CustomPath from "../constants/path";
-import customColors, { materialColors } from "../styles/colors";
+import customColors, { materialColors } from "../constants/styles/colors";
 import Input from "@material-ui/core/Input";
 import { useState } from "react";
 import { SpeedPageNo } from "../constants/types";
 import { getSpeedTestContent } from "../constants/testContents";
+import { setSpeedTestCookie } from "../utils/cookie";
 
 function SpeedTestPage0() {
   const [pageNo, setPageNo] = useState<SpeedPageNo>(0);
@@ -31,12 +32,17 @@ function SpeedTestPage0() {
 
     switch (pageNo) {
       case 7:
-        window.location.assign(CustomPath.RESULT);
+        goQuestionPage();
         return;
       default:
         changePageNo();
         return;
     }
+  };
+
+  const goQuestionPage = () => {
+    setSpeedTestCookie(history);
+    window.location.assign(CustomPath.QUESTION);
   };
 
   const changePageNo = () => {
@@ -68,7 +74,7 @@ function SpeedTestPage0() {
       <StyledEmptyDiv height="20px" />
       <StyledRow crossAxisAlignment="center">
         <Input
-          placeholder="지나간 글자를 입력하세요."
+          placeholder="띄어쓰기도 정확히!"
           inputProps={{ "aria-label": "description" }}
           value={userInput}
           onChange={handleInput}

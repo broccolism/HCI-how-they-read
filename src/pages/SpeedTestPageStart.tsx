@@ -15,9 +15,11 @@ function SpeedTestPageStart() {
     <StyledColumn crossAxisAlignment="center">
       <StyledEmptyDiv height="40px" />
       <div>
-        빠르게 지나가는 글자나 아이콘을 잘 보고,
+        빠르게 지나가는 글자를 잘 보고,
         <br />
         무엇을 봤는지 알려주세요.
+        <br />
+        아래 버튼을 누르면 바로 시작됩니다.
       </div>
       <NextButton onClick={handleClickNextButton} />
     </StyledColumn>

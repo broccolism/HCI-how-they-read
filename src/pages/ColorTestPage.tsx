@@ -5,68 +5,93 @@ import {
   StyledEmptyDiv,
   StyledRow,
 } from "../components/layouts/StyledSimpleLayout";
-import customColors, { materialColors } from "../styles/colors";
-import customFonts, { Warning } from "../styles/fonts";
+import customColors, { materialColors } from "../constants/styles/colors";
+import customFonts, { Warning } from "../constants/styles/fonts";
 import { BsBrightnessAltLowFill, BsBrightnessAltHigh } from "react-icons/bs";
 import NextButton from "../components/NextButton";
 import CustomPath from "../constants/path";
-import { PrettoSlider } from "../styles/customMaterialUi";
+import { PrettoSlider } from "../constants/styles/customMaterialUi";
 import { Input } from "@material-ui/core";
 import { getColorTestContent } from "../constants/testContents";
-import { ColorPageNo } from "../constants/types";
+import { ColorPageNo, ColorTestStep } from "../constants/types";
+import { setColorTestCookie, setColorTestCountCookie } from "../utils/cookie";
+import { setUncaughtExceptionCaptureCallback } from "node:process";
 
-type Step = 0 | 100 | 200 | 300 | 400 | 500 | 600 | 700;
 type Props = {
   onChangePage: Function;
 };
 
 function ColorTestPage({ onChangePage }: Props) {
   const [pageNo, setPageNo] = useState<ColorPageNo>(0);
-  const [colorStep, setColorStep] = useState<Step>(700);
-
-  const handleClickNextButton = () => {
-    changeHistory();
-
-    switch (pageNo) {
-      case 0:
-        setColorStep(0);
-        break;
-      case 1:
-        setColorStep(700);
-        break;
-      case 2:
-        setColorStep(0);
-        break;
-      case 3:
-        window.location.assign(CustomPath.SPEED_TEST_START);
-        return;
-    }
-
-    setPageNo((pageNo + 1) as ColorPageNo);
-    onChangePage((pageNo + 1) as ColorPageNo);
-  };
-
-  const makeBrighter = () => {
-    const newStep = colorStep === 0 ? 0 : ((colorStep - 100) as Step);
-    setColorStep(newStep);
-  };
-
-  const makeDarker = () => {
-    const newStep = colorStep === 700 ? 700 : ((colorStep + 100) as Step);
-    setColorStep(newStep);
-  };
-
-  const [history, setHistory] = useState<Record<ColorPageNo, Step>>({
+  const [colorStep, setColorStep] = useState<ColorTestStep>(700);
+  const [history, setHistory] = useState<Record<ColorPageNo, ColorTestStep>>({
     0: 700,
     1: 0,
     2: 700,
     3: 0,
   });
+  const [inputList, setInputList] = useState<Record<ColorPageNo, string>>({
+    0: "",
+    1: "",
+    2: "",
+    3: "",
+  });
+  const [input, setInput] = useState<string>("");
+
+  const handleClickNextButton = () => {
+    changeHistory();
+    changeInputList();
+
+    switch (pageNo) {
+      case 0:
+      case 2:
+        setColorStep(0);
+        break;
+      case 1:
+        setColorStep(700);
+        break;
+      case 3:
+        goSpeedTestPage();
+        return;
+    }
+
+    setInput("");
+    setPageNo((pageNo + 1) as ColorPageNo);
+    onChangePage((pageNo + 1) as ColorPageNo);
+    window.scrollTo(0, 0);
+  };
+
+  const goSpeedTestPage = () => {
+    setColorTestCookie(history);
+    setColorTestCountCookie(inputList);
+    window.location.assign(CustomPath.SPEED_TEST_START);
+  };
+
+  const makeBrighter = () => {
+    const newStep = colorStep === 0 ? 0 : ((colorStep - 100) as ColorTestStep);
+    setColorStep(newStep);
+  };
+
+  const makeDarker = () => {
+    const newStep =
+      colorStep === 700 ? 700 : ((colorStep + 100) as ColorTestStep);
+    setColorStep(newStep);
+  };
 
   const changeHistory = () => {
     let newHistory = history;
     newHistory[pageNo] = colorStep;
     setHistory(newHistory);
+  };
+
+  const changeInputList = () => {
+    let newList = inputList;
+    newList[pageNo] = input;
+    setInputList(newList);
+  };
+
+  const handleInput = (e: any) => {
+    setInput(e.target.value);
   };
 
   return (
@@ -95,6 +120,8 @@ function ColorTestPage({ onChangePage }: Props) {
       <Input
         placeholder="숫자만 입력하세요."
         inputProps={{ "aria-label": "description" }}
+        value={input}
+        onChange={handleInput}
       />
       <StyledEmptyDiv height="8px" />
       <NextButton onClick={handleClickNextButton} />

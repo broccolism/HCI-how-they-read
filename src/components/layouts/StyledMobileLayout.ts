@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import customColors from "../../styles/colors";
-import { mobileHorizPadding2x } from "../../styles/size";
+import customColors from "../../constants/styles/colors";
+import { mobileHorizPadding2x } from "../../constants/styles/size";
 
 export const StyledMobileLayout = styled.div`
   display: flex;

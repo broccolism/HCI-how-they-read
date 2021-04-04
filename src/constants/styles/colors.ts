@@ -4,6 +4,7 @@ const customColors = {
   grayLight: "#E6E6E6",
   gray: "#D2D2D2",
   red: "#FF7043",
+  blue: "#008FDE",
 };
 
 export const materialColors = {

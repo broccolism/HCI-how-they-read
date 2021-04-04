@@ -5,8 +5,19 @@ const colorTestKeywords: Record<number, string> = {
   3: "마을",
 };
 
+const colorTestResults: Record<number, number> = {
+  0: 4,
+  1: 6,
+  2: 9,
+  3: 5,
+};
+
 export const getColorTestKeyword = (pageNo: number) => {
   return colorTestKeywords[pageNo];
+};
+
+export const getColorTestResult = (pageNo: number) => {
+  return colorTestResults[pageNo];
 };
 
 const colorTestContents: Record<number, string> = {
@@ -28,7 +39,7 @@ const speedTestContents: Record<number, string> = {
   4: "마법의 성",
   5: "자이앤티",
   6: "라임 애이드",
-  7: "비비쿠 치킨",
+  7: "비베쿠 치킨",
 };
 
 export const getSpeedTestContent = (pageNo: number) => {
