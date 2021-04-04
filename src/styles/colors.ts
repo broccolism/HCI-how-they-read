@@ -10,10 +10,13 @@ export const materialColors = {
   white: "#FFFFFF",
   gray: {
     0: "#FFFFFF",
-    100: "#E0E0E0",
-    200: "#CACACA",
-    300: "#BDBDBD",
-    400: "#9E9E9E",
+    100: "#DCDCDC",
+    200: "#B9B9B9",
+    300: "#999999",
+    400: "#9C9C9C",
+    500: "#7C7C7C",
+    600: "#5C5C5C",
+    700: "#3C3C3C",
   },
 };
 

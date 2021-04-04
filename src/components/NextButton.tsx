@@ -1,4 +1,3 @@
-import React from "react";
 import { MdNavigateNext } from "react-icons/md";
 import styled from "styled-components";
 import customColors from "../styles/colors";

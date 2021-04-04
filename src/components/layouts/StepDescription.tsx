@@ -1,27 +1,22 @@
 import styled from "styled-components";
 import CustomPath from "../../constants/path";
+import { getColorTestKeyword } from "../../constants/testContents";
+import { ColorPageNo } from "../../constants/types";
 import customFonts from "../../styles/fonts";
 import { StyledColumn, StyledEmptyDiv } from "./StyledSimpleLayout";
 
-function StepDescription() {
-  const curUrlPath = window.location.pathname as CustomPath;
+type Props = {
+  colorPageNo: ColorPageNo;
+};
 
+function StepDescription({ colorPageNo }: Props) {
+  const curUrlPath = window.location.pathname.split("#")[0] as CustomPath;
   const renderIcon = () => {
     switch (curUrlPath) {
-      case CustomPath.BRIGHTNESSTEST_1:
-      case CustomPath.BRIGHTNESSTEST_2:
-      case CustomPath.BRIGHTNESSTEST_3:
-      case CustomPath.BRIGHTNESSTEST_4:
+      case CustomPath.BRIGHTNESSTEST:
         return <Emoji size="40px">🌈</Emoji>;
       case CustomPath.SPEED_TEST_START:
-      case CustomPath.SPEED_TEST_1:
-      case CustomPath.SPEED_TEST_2:
-      case CustomPath.SPEED_TEST_3:
-      case CustomPath.SPEED_TEST_4:
-      case CustomPath.SPEED_TEST_5:
-      case CustomPath.SPEED_TEST_6:
-      case CustomPath.SPEED_TEST_7:
-      case CustomPath.SPEED_TEST_8:
+      case CustomPath.SPEED_TEST:
         return <Emoji size="40px">🙈</Emoji>;
       case CustomPath.QUESTION:
         return <Emoji size="40px">🧐</Emoji>;
@@ -34,21 +29,14 @@ function StepDescription() {
 
   const getTitle = () => {
     switch (curUrlPath) {
-      case CustomPath.BRIGHTNESSTEST_1:
-      case CustomPath.BRIGHTNESSTEST_2:
-      case CustomPath.BRIGHTNESSTEST_3:
-      case CustomPath.BRIGHTNESSTEST_4:
-        return "보기 편한 상태로 맞춰주세요.";
+      case CustomPath.BRIGHTNESSTEST:
+        return `'${getColorTestKeyword(
+          colorPageNo
+        )}' (이)라는 단어가 총 몇 번 나오나요?`;
       case CustomPath.SPEED_TEST_START:
-      case CustomPath.SPEED_TEST_1:
-      case CustomPath.SPEED_TEST_2:
-      case CustomPath.SPEED_TEST_3:
-      case CustomPath.SPEED_TEST_4:
-      case CustomPath.SPEED_TEST_5:
-      case CustomPath.SPEED_TEST_6:
-      case CustomPath.SPEED_TEST_7:
-      case CustomPath.SPEED_TEST_8:
-        return "얼마나 정확히 볼 수 있나요?";
+        return "얼마나 정확하게 볼 수 있나요?";
+      case CustomPath.SPEED_TEST:
+        return "무엇이 지나갔나요?";
       case CustomPath.QUESTION:
         return "잉";
       case CustomPath.RESULT:

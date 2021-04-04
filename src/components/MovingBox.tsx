@@ -64,6 +64,7 @@ const Background = styled.div<{
   align-items: center;
   text-align: center;
   background-color: ${(props) => props.backgroundColor};
+  overflow: hidden;
 `;
 
 export default MovingBox;

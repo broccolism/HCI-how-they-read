@@ -6,6 +6,7 @@ import {
 } from "../components/layouts/StyledSimpleLayout";
 import NextButton from "../components/NextButton";
 import CustomPath from "../constants/path";
+import customColors from "../styles/colors";
 import customFonts from "../styles/fonts";
 
 type HomeStep = 0 | 1 | 2;
@@ -22,7 +23,7 @@ function HomePage() {
         setStep(2);
         return;
       case 2:
-        window.location.assign(CustomPath.BRIGHTNESSTEST_1);
+        window.location.assign(CustomPath.BRIGHTNESSTEST);
         return;
     }
   };
@@ -56,8 +57,11 @@ function HomePage() {
       case 2:
         return (
           <Root key={step}>
-            정확한 결과를 위해 테스트를 하는 동안 휴대폰의 밝기를 변경하지
-            마세요.
+            <div>
+              정확한 결과를 위해 휴대폰 밝기를&nbsp;
+              <span className="accent">50% 이상</span>으로 맞추고, 테스트를 하는
+              동안 <span className="accent">밝기를 변경하지 마세요.</span>
+            </div>
           </Root>
         );
     }
@@ -92,6 +96,11 @@ const Root = styled.div`
 
   .italic {
     font-style: italic;
+  }
+
+  .accent {
+    font-weight: 700;
+    color: ${customColors.red};
   }
 `;
 
