@@ -38,7 +38,7 @@ function QuestionPage() {
     setAnswers({ ...answers, 4: e.target.value });
   };
 
-  const goNextPage = async () => {
+  const goNextPage = () => {
     const userInfo: UserInfo = {
       age: answers[4],
       gender: answers[3],
@@ -49,9 +49,7 @@ function QuestionPage() {
       },
     };
 
-    await createUserHistory(userInfo);
-
-    // window.location.assign(CustomPath.RESULT);
+    createUserHistory(userInfo);
   };
 
   return (

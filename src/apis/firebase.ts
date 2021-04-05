@@ -2,6 +2,7 @@ import db from "../config/firebase";
 import firebase from "firebase";
 import { ColorPageNo, ColorTestStep, SpeedPageNo } from "../constants/types";
 import { getColorTestCookie, getSpeedTestCookie } from "../utils/cookie";
+import CustomPath from "../constants/path";
 
 type ColorTestHistory = Record<ColorPageNo, ColorTestStep>;
 type SpeedTestHistory = Record<SpeedPageNo, string>;
@@ -23,7 +24,7 @@ type History = {
   created_at: firebase.firestore.Timestamp;
 };
 
-export const createUserHistory = async (user: UserInfo) => {
+export const createUserHistory = (user: UserInfo) => {
   const colorHistory: ColorTestHistory = getColorTestCookie();
   const speedHistory: SpeedTestHistory = getSpeedTestCookie();
   const curTime = Date.now();
@@ -37,7 +38,7 @@ export const createUserHistory = async (user: UserInfo) => {
   db.collection("History")
     .add(newHistory)
     .then((docRef) => {
-      console.log("@@@", docRef.id);
+      window.location.assign(CustomPath.RESULT);
     })
     .catch((err) => {
       console.log("@@@@ firebase add err:", err);
