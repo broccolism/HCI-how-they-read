@@ -1,14 +1,19 @@
 import { ReactNode } from "react";
 import styled, { keyframes } from "styled-components";
 
-type MovingBoxProps = {
+type SpeedTestBox = {
   time: number;
   color: string;
   backgroundColor: string;
   children: ReactNode;
 };
 
-function MovingBox({ time, color, backgroundColor, children }: MovingBoxProps) {
+function SpeedTestBox({
+  time,
+  color,
+  backgroundColor,
+  children,
+}: SpeedTestBox) {
   return (
     <Background backgroundColor={backgroundColor}>
       <Content color={color} time={time}>
@@ -18,21 +23,21 @@ function MovingBox({ time, color, backgroundColor, children }: MovingBoxProps) {
   );
 }
 
-const move = keyframes`
-    0% {
-        transform: translate(-100vw, 0px);
-    }
-    100% {
-      transform: translate(200vw, 0px);
-    }
-`;
+// const move = keyframes`
+//     0% {
+//         transform: translate(-100vw, 0px);
+//     }
+//     100% {
+//       transform: translate(200vw, 0px);
+//     }
+// `;
 
 const hide = keyframes`
     0% {
-      opacity: 1;
+      opacity: 0;
     }
     100% {
-      opacity: 0.1;
+      opacity: 1;
     }
 `;
 
@@ -40,18 +45,22 @@ const Content = styled.div<{
   color: string;
   time: number;
 }>`
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
   color: ${(props) => props.color};
-  animation: ${move} ${(props) => props.time.toString() + "ms"} linear;
-  animation-fill-mode: forwards;
+  animation: ${hide} ${(props) => props.time.toString() + "s"};
+  // animation-fill-mode: forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
 `;
 
 const ContentWrapper = styled.div<{
   time: number;
 }>`
-  animation: ${hide} ${(props) => props.time.toString() + "ms"} step-end;
+  // animation: ${hide} ${(props) => props.time.toString() + "s"} step-end;
 `;
 
 const Background = styled.div<{
@@ -67,4 +76,4 @@ const Background = styled.div<{
   overflow: hidden;
 `;
 
-export default MovingBox;
+export default SpeedTestBox;

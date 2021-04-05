@@ -3,7 +3,7 @@ import {
   StyledEmptyDiv,
   StyledRow,
 } from "../components/layouts/StyledSimpleLayout";
-import MovingBox from "../components/MovingBox";
+import MovingBox from "../components/SpeedTestBox";
 import NextButton from "../components/NextButton";
 import CustomPath from "../constants/path";
 import customColors, { materialColors } from "../constants/styles/colors";
@@ -67,7 +67,7 @@ function SpeedTestPage0() {
         key={pageNo}
         color={pageNo > 3 ? customColors.black : materialColors.gray[0]}
         backgroundColor={pageNo > 3 ? customColors.white : customColors.black}
-        time={3000}
+        time={0.5}
       >
         {getSpeedTestContent(pageNo)}
       </MovingBox>

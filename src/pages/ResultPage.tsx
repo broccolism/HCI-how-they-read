@@ -67,8 +67,8 @@ function ResultPage() {
           const result = getColorTestResult(val).toString();
 
           return (
-            <OneRow>
-              <StyledRow key={idx}>
+            <OneRow key={idx}>
+              <StyledRow>
                 <Cell>{keyword}</Cell>
                 {userInput !== result ? (
                   <Cell red>{userInput}</Cell>

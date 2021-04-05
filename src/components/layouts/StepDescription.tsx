@@ -36,7 +36,7 @@ function StepDescription({ colorPageNo }: Props) {
       case CustomPath.SPEED_TEST_START:
         return "얼마나 정확하게 볼 수 있나요?";
       case CustomPath.SPEED_TEST:
-        return "무엇이 지나갔나요?";
+        return "무엇이 보였나요?";
       case CustomPath.QUESTION:
         return "거의 다 왔습니다.";
       case CustomPath.RESULT:

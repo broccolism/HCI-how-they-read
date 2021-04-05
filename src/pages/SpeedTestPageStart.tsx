@@ -15,7 +15,7 @@ function SpeedTestPageStart() {
     <StyledColumn crossAxisAlignment="center">
       <StyledEmptyDiv height="40px" />
       <div>
-        빠르게 지나가는 글자를 잘 보고,
+        사라지는 글자를 잘 보고,
         <br />
         무엇을 봤는지 알려주세요.
         <br />

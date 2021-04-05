@@ -32,14 +32,14 @@ export const getColorTestContent = (pageNo: number) => {
 };
 
 const speedTestContents: Record<number, string> = {
-  0: "유리의 성",
-  1: "아이엔티",
-  2: "당근 캐이스",
-  3: "무인됴 특집",
-  4: "마법의 성",
-  5: "자이앤티",
-  6: "라임 애이드",
-  7: "비베쿠 치킨",
+  0: "돛",
+  1: "삻",
+  2: "코바늘 다육이",
+  3: "필라델피아",
+  4: "옻",
+  5: "갊",
+  6: "소로의 문장들",
+  7: "몰래카메라",
 };
 
 export const getSpeedTestContent = (pageNo: number) => {

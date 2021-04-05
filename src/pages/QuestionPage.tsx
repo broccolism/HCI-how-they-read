@@ -1,6 +1,7 @@
 import { FormControlLabel, Input, Radio, RadioGroup } from "@material-ui/core";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { createUserHistory, UserInfo } from "../apis/firebase";
 import {
   StyledColumn,
   StyledEmptyDiv,
@@ -13,14 +14,13 @@ import customFonts from "../constants/styles/fonts";
 type QuestionNo = 0 | 1 | 2 | 3 | 4 | 5;
 
 function QuestionPage() {
-  const [age, setAge] = useState<string>("");
   const [answers, setAnswers] = useState<Record<QuestionNo, string>>({
-    0: "",
+    0: "예",
     1: "",
     2: "",
     3: "",
     4: "",
-    5: "",
+    5: "하루에 30분 미만",
   });
 
   const onChangeAnswer = (e: any) => {
@@ -35,13 +35,23 @@ function QuestionPage() {
   };
 
   const onChangeAge = (e: any) => {
-    setAge(e.target.value);
+    setAnswers({ ...answers, 4: e.target.value });
   };
 
-  const goNextPage = () => {
-    setAnswers({ ...answers, 3: age });
-    // TODO: 서버로 정보 보내기
-    window.location.assign(CustomPath.RESULT);
+  const goNextPage = async () => {
+    const userInfo: UserInfo = {
+      age: answers[4],
+      gender: answers[3],
+      answers: {
+        darkVsLight: answers[1],
+        usingDarkmode: answers[2],
+        readingTime: answers[5],
+      },
+    };
+
+    await createUserHistory(userInfo);
+
+    // window.location.assign(CustomPath.RESULT);
   };
 
   return (
