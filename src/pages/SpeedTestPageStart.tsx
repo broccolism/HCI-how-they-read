@@ -1,10 +1,10 @@
-import React from "react";
 import {
   StyledColumn,
   StyledEmptyDiv,
 } from "../components/layouts/StyledSimpleLayout";
 import NextButton from "../components/NextButton";
 import CustomPath from "../constants/path";
+import { Warning } from "../constants/styles/fonts";
 
 function SpeedTestPageStart() {
   const handleClickNextButton = () => {
@@ -18,9 +18,9 @@ function SpeedTestPageStart() {
         사라지는 글자를 잘 보고,
         <br />
         무엇을 봤는지 알려주세요.
-        <br />
-        아래 버튼을 누르면 바로 시작됩니다.
       </div>
+      <StyledEmptyDiv height="10px" />
+      <Warning>아래 버튼을 누르면 바로 시작됩니다.</Warning>
       <NextButton onClick={handleClickNextButton} />
     </StyledColumn>
   );

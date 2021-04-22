@@ -15,6 +15,7 @@ export type UserInfo = {
     usingDarkmode: string;
     readingTime: string;
   };
+  more_bad: string;
 };
 
 type History = {

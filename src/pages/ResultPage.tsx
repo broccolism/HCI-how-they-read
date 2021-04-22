@@ -13,12 +13,13 @@ import {
   getColorTestResult,
   getSpeedTestContent,
 } from "../constants/testContents";
-import { ColorPages, SpeedPages } from "../constants/types";
-import { getColorTestCountCookie, getSpeedTestCookie } from "../utils/cookie";
+import { colorPages, speedPages } from "../constants/types";
+import { getColorTestCookie, getSpeedTestCookie } from "../utils/cookie";
 import { MdEmail } from "react-icons/md";
-import { AiOutlineGithub } from "react-icons/ai";
+import { AiOutlineConsoleSql, AiOutlineGithub } from "react-icons/ai";
 
 function ResultPage() {
+  const colorTestResult = getColorTestCookie();
   return (
     <StyledColumn crossAxisAlignment="start">
       <StyledEmptyDiv height="30px" />
@@ -61,13 +62,13 @@ function ResultPage() {
           <Cell bold>결과</Cell>
         </StyledRow>
         <StyledEmptyDiv height="8px" />
-        {ColorPages.map((val: number, idx: number) => {
+        {colorPages.map((val: number) => {
           const keyword = getColorTestKeyword(val);
-          const userInput = getColorTestCountCookie()[val].toString();
+          const userInput = colorTestResult[val].user_input;
           const result = getColorTestResult(val).toString();
 
           return (
-            <OneRow key={idx}>
+            <OneRow key={val}>
               <StyledRow>
                 <Cell>{keyword}</Cell>
                 {userInput !== result ? (
@@ -94,7 +95,7 @@ function ResultPage() {
           <Cell bold>지나간 단어</Cell>
         </StyledRow>
         <StyledEmptyDiv height="8px" />
-        {SpeedPages.map((val: number, idx: number) => {
+        {speedPages.map((val: number, idx: number) => {
           const keyword = getSpeedTestContent(val);
           const userInput = getSpeedTestCookie()[val];
 

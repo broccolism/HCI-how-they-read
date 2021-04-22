@@ -17,7 +17,7 @@ export const materialColors = {
     400: "#9C9C9C",
     500: "#7C7C7C",
     600: "#5C5C5C",
-    700: "#3C3C3C",
+    700: "#333333",
   },
 };
 

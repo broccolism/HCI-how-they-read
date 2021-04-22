@@ -11,11 +11,15 @@ import { BsBrightnessAltLowFill, BsBrightnessAltHigh } from "react-icons/bs";
 import NextButton from "../components/NextButton";
 import CustomPath from "../constants/path";
 import { PrettoSlider } from "../constants/styles/customMaterialUi";
-import { Input } from "@material-ui/core";
+import { colors, Input } from "@material-ui/core";
 import { getColorTestContent } from "../constants/testContents";
-import { ColorPageNo, ColorTestStep } from "../constants/types";
-import { setColorTestCookie, setColorTestCountCookie } from "../utils/cookie";
-import { setUncaughtExceptionCaptureCallback } from "node:process";
+import {
+  ColorPageNo,
+  ColorTestResultType,
+  ColorTestStep,
+  colorPages,
+} from "../constants/types";
+import { setColorTestCookie } from "../utils/cookie";
 
 type Props = {
   onChangePage: Function;
@@ -24,23 +28,47 @@ type Props = {
 function ColorTestPage({ onChangePage }: Props) {
   const [pageNo, setPageNo] = useState<ColorPageNo>(0);
   const [colorStep, setColorStep] = useState<ColorTestStep>(700);
-  const [history, setHistory] = useState<Record<ColorPageNo, ColorTestStep>>({
-    0: 700,
-    1: 0,
-    2: 700,
-    3: 0,
-  });
-  const [inputList, setInputList] = useState<Record<ColorPageNo, string>>({
-    0: "",
-    1: "",
-    2: "",
-    3: "",
-  });
   const [input, setInput] = useState<string>("");
+
+  const [history, setHistory] = useState<
+    Record<ColorPageNo, ColorTestResultType>
+  >({
+    0: {
+      color_step: 700,
+      user_input: "",
+    },
+    1: {
+      color_step: 0,
+      user_input: "",
+    },
+    2: {
+      color_step: 700,
+      user_input: "",
+    },
+    3: {
+      color_step: 0,
+      user_input: "",
+    },
+    4: {
+      color_step: -1,
+      user_input: "",
+    },
+    5: {
+      color_step: -1,
+      user_input: "",
+    },
+    6: {
+      color_step: -1,
+      user_input: "",
+    },
+    7: {
+      color_step: -1,
+      user_input: "",
+    },
+  });
 
   const handleClickNextButton = () => {
     changeHistory();
-    changeInputList();
 
     switch (pageNo) {
       case 0:
@@ -50,9 +78,12 @@ function ColorTestPage({ onChangePage }: Props) {
       case 1:
         setColorStep(700);
         break;
-      case 3:
-        goSpeedTestPage();
+      case 7:
+        goColorResultPage();
         return;
+      default:
+        setColorStep(-1);
+        break;
     }
 
     setInput("");
@@ -61,10 +92,9 @@ function ColorTestPage({ onChangePage }: Props) {
     window.scrollTo(0, 0);
   };
 
-  const goSpeedTestPage = () => {
+  const goColorResultPage = () => {
     setColorTestCookie(history);
-    setColorTestCountCookie(inputList);
-    window.location.assign(CustomPath.SPEED_TEST_START);
+    window.location.assign(CustomPath.COLOR_TEST_RESULT);
   };
 
   const makeBrighter = () => {
@@ -80,14 +110,11 @@ function ColorTestPage({ onChangePage }: Props) {
 
   const changeHistory = () => {
     let newHistory = history;
-    newHistory[pageNo] = colorStep;
+    newHistory[pageNo] = {
+      color_step: colorStep,
+      user_input: input,
+    };
     setHistory(newHistory);
-  };
-
-  const changeInputList = () => {
-    let newList = inputList;
-    newList[pageNo] = input;
-    setInputList(newList);
   };
 
   const handleInput = (e: any) => {
@@ -96,24 +123,41 @@ function ColorTestPage({ onChangePage }: Props) {
 
   return (
     <StyledColumn crossAxisAlignment="center" mainAxisAlignment="center">
-      <StyledEmptyDiv height="30px" />
-      아이콘을 눌러 글자 색을 조절하세요.
-      <Warning>주의: 스마트폰 밝기를 조절하지 마세요.</Warning>
-      <StyledRow width="100%">
-        <BsBrightnessAltHigh size="40px" onClick={makeBrighter} />
-        <StyledEmptyDiv width="16px" />
-        <PrettoSlider
-          value={colorStep}
-          aria-labelledby="discrete-slider"
-          step={100}
-          marks
-          min={0}
-          max={700}
-        />
-        <StyledEmptyDiv width="16px" />
-        <BsBrightnessAltLowFill size="40px" onClick={makeDarker} />
-      </StyledRow>
-      <Content color={materialColors.gray[colorStep]}>
+      <DarkmodeSection isDark={colorStep > -1}>
+        <StyledColumn
+          crossAxisAlignment="center"
+          mainAxisAlignment="center"
+          width="100%"
+        >
+          <StyledEmptyDiv height="30px" />
+          버튼을 눌러 글자 색을 조절하세요.
+          <Warning>주의: 스마트폰 밝기를 조절하지 마세요.</Warning>
+          <StyledRow width="100%">
+            <Button style={{ width: "100px" }} onClick={makeBrighter}>
+              밝게
+            </Button>
+            <StyledEmptyDiv width="16px" />
+            <PrettoSlider
+              value={colorStep}
+              aria-labelledby="discrete-slider"
+              step={100}
+              marks
+              min={0}
+              max={700}
+            />
+            <StyledEmptyDiv width="24px" />
+            <Button style={{ width: "100px" }} onClick={makeDarker}>
+              어둡게
+            </Button>
+          </StyledRow>
+        </StyledColumn>
+      </DarkmodeSection>
+      <Content
+        color={
+          colorStep === -1 ? customColors.black : materialColors.gray[colorStep]
+        }
+        isDark={colorStep > -1}
+      >
         {getColorTestContent(pageNo)}
       </Content>
       <StyledEmptyDiv height="8px" />
@@ -129,7 +173,12 @@ function ColorTestPage({ onChangePage }: Props) {
   );
 }
 
-const Content = styled.div<{ color: string }>`
+const DarkmodeSection = styled.div<{ isDark: boolean }>`
+  display: ${(props) => (props.isDark ? "auto" : "none")};
+  width: 100%;
+`;
+
+const Content = styled.div<{ color: string; isDark: boolean }>`
   ${customFonts.body}
   text-align: start;
   display: flex;
@@ -137,7 +186,19 @@ const Content = styled.div<{ color: string }>`
   padding: 20px;
   color: ${(props) => props.color};
   border-radius: 4px;
-  background-color: ${customColors.black};
+  background-color: ${(props) =>
+    props.isDark ? customColors.black : customColors.white};
+  white-space: pre-wrap;
+`;
+
+const Button = styled.div`
+  ${customFonts.body}
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+  color: ${customColors.black};
+  border-radius: 4px;
+  background-color: ${customColors.grayLight};
 `;
 
 export default ColorTestPage;

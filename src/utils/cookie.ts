@@ -1,26 +1,28 @@
 import { Cookies } from "react-cookie";
-import { ColorPageNo, ColorTestStep, SpeedPageNo } from "../constants/types";
+import {
+  ColorPageNo,
+  ColorTestResultType,
+  SpeedPageNo,
+} from "../constants/types";
 
 const cookie = new Cookies();
 
 export const setColorTestCookie = (
-  result: Record<ColorPageNo, ColorTestStep>
+  result: Record<ColorPageNo, ColorTestResultType>
 ) => {
   cookie.set("color", result);
-};
-
-export const setColorTestCountCookie = (
-  result: Record<ColorPageNo, string>
-) => {
-  cookie.set("color-count", result);
 };
 
 export const getColorTestCookie = () => {
   return cookie.get("color");
 };
 
-export const getColorTestCountCookie = () => {
-  return cookie.get("color-count");
+export const setColorTestFeelingCookie = (result: string) => {
+  cookie.set("color-feeling", result);
+};
+
+export const getColorTestFeelingCookie = () => {
+  return cookie.get("color-feeling");
 };
 
 export const setSpeedTestCookie = (result: Record<SpeedPageNo, string>) => {

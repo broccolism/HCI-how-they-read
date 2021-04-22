@@ -13,11 +13,12 @@ function StepDescription({ colorPageNo }: Props) {
   const curUrlPath = window.location.pathname.split("#")[0] as CustomPath;
   const renderIcon = () => {
     switch (curUrlPath) {
-      case CustomPath.BRIGHTNESSTEST:
+      case CustomPath.COLOR_TEST:
         return <Emoji size="40px">🌈</Emoji>;
       case CustomPath.SPEED_TEST_START:
       case CustomPath.SPEED_TEST:
         return <Emoji size="40px">🙈</Emoji>;
+      case CustomPath.COLOR_TEST_RESULT:
       case CustomPath.QUESTION:
         return <Emoji size="40px">🧐</Emoji>;
       case CustomPath.RESULT:
@@ -29,16 +30,18 @@ function StepDescription({ colorPageNo }: Props) {
 
   const getTitle = () => {
     switch (curUrlPath) {
-      case CustomPath.BRIGHTNESSTEST:
+      case CustomPath.COLOR_TEST:
         return `'${getColorTestKeyword(
           colorPageNo
         )}' (이)라는 단어가 총 몇 번 나오나요?`;
+      case CustomPath.COLOR_TEST_RESULT:
+        return "중간 점검 (거의 다 왔습니다!)";
       case CustomPath.SPEED_TEST_START:
         return "얼마나 정확하게 볼 수 있나요?";
       case CustomPath.SPEED_TEST:
         return "무엇이 보였나요?";
       case CustomPath.QUESTION:
-        return "거의 다 왔습니다.";
+        return "정말로 거의 다 왔습니다!";
       case CustomPath.RESULT:
         return "감사합니다!";
       case CustomPath.HOME:

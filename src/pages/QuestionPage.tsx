@@ -10,6 +10,7 @@ import {
 import NextButton from "../components/NextButton";
 import CustomPath from "../constants/path";
 import customFonts from "../constants/styles/fonts";
+import { getColorTestFeelingCookie } from "../utils/cookie";
 
 type QuestionNo = 0 | 1 | 2 | 3 | 4 | 5;
 
@@ -31,7 +32,6 @@ function QuestionPage() {
 
   const onClickWrong = () => {
     window.alert("정확한 결과를 위해 처음부터 다시 진행해주세요.");
-    window.location.assign("/");
   };
 
   const onChangeAge = (e: any) => {
@@ -39,6 +39,7 @@ function QuestionPage() {
   };
 
   const goNextPage = () => {
+    const colorFeeling = getColorTestFeelingCookie();
     const userInfo: UserInfo = {
       age: answers[4],
       gender: answers[3],
@@ -47,6 +48,7 @@ function QuestionPage() {
         usingDarkmode: answers[2],
         readingTime: answers[5],
       },
+      more_bad: colorFeeling,
     };
 
     createUserHistory(userInfo);

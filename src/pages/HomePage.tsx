@@ -24,7 +24,7 @@ function HomePage() {
         setStep(2);
         return;
       case 2:
-        window.location.assign(CustomPath.BRIGHTNESSTEST);
+        window.location.assign(CustomPath.COLOR_TEST);
         return;
     }
   };
@@ -63,8 +63,8 @@ function HomePage() {
             <Root key={step}>
               <div>
                 정확한 결과를 위해 휴대폰 밝기를&nbsp;
-                <span className="accent">50% 이상</span>으로 맞추고, 테스트를
-                하는 동안&nbsp;
+                <span className="accent">40% 이상의 편한 밝기</span>로 맞추고,
+                테스트를 하는 동안&nbsp;
                 <span className="accent">밝기를 변경하지 마세요.</span>
               </div>
             </Root>

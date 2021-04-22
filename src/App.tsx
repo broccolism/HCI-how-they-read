@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import StepIndicator from "./components/layouts/StepIndicator";
 import StepDescription from "./components/layouts/StepDescription";
@@ -17,6 +17,7 @@ import { ColorPageNo } from "./constants/types";
 import SpeedTestPage from "./pages/SpeedTestPage";
 import QuestionPage from "./pages/QuestionPage";
 import ResultPage from "./pages/ResultPage";
+import ColorTestQuestionPage from "./pages/ColorTestQuestionPage";
 
 function App() {
   const [colorStep, setColorStep] = useState<ColorPageNo>(0);
@@ -29,8 +30,11 @@ function App() {
           <StepIndicator />
           <StepDescription colorPageNo={colorStep} />
           <Switch>
-            <Route path={CustomPath.BRIGHTNESSTEST}>
+            <Route path={CustomPath.COLOR_TEST}>
               <ColorTestPage onChangePage={setColorStep} />
+            </Route>
+            <Route path={CustomPath.COLOR_TEST_RESULT}>
+              <ColorTestQuestionPage />
             </Route>
             <Route path={CustomPath.SPEED_TEST_START}>
               <SpeedTestPageStart />
