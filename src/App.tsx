@@ -18,6 +18,7 @@ import SpeedTestPage from "./pages/SpeedTestPage";
 import QuestionPage from "./pages/QuestionPage";
 import ResultPage from "./pages/ResultPage";
 import ColorTestQuestionPage from "./pages/ColorTestQuestionPage";
+import GetResultPage from "./pages/GetResultPage";
 
 function App() {
   const [colorStep, setColorStep] = useState<ColorPageNo>(0);
@@ -47,6 +48,9 @@ function App() {
             </Route>
             <Route path={CustomPath.RESULT}>
               <ResultPage />
+            </Route>
+            <Route path={CustomPath.SECRET}>
+              <GetResultPage />
             </Route>
             <Route path={CustomPath.HOME}>
               <HomePage />

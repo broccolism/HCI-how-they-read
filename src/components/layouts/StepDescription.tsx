@@ -25,6 +25,8 @@ function StepDescription({ colorPageNo }: Props) {
         return <Emoji size="40px">🎉</Emoji>;
       case CustomPath.HOME:
         return <Emoji size="40px">👀</Emoji>;
+      case CustomPath.SECRET:
+        return "";
     }
   };
 
@@ -46,6 +48,8 @@ function StepDescription({ colorPageNo }: Props) {
         return "감사합니다!";
       case CustomPath.HOME:
         return "내 눈은 몇 살일까요?";
+      case CustomPath.SECRET:
+        return "";
     }
   };
 

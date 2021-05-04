@@ -10,3 +10,41 @@ export type ColorTestResultType = {
   color_step: ColorTestStep;
   user_input: string;
 };
+
+// for retreiving data from DB
+type User = {
+  age: number;
+  answers: {
+    darkVsLight: string;
+    readingTime: string;
+    usingDarkmode: string;
+  };
+  gender: string;
+  more_bad: string;
+};
+
+export type History = {
+  color: ColorTestHistory;
+  created_at: Date;
+  speed: SpeedTestHistory;
+  user: User;
+};
+
+export type ColorTestHistory = Record<ColorPageNo, ColorTestStep>;
+export type SpeedTestHistory = Record<SpeedPageNo, string>;
+
+export type UserInfo = {
+  age: string;
+  gender: string;
+  answers: {
+    darkVsLight: string;
+    usingDarkmode: string;
+    readingTime: string;
+  };
+  more_bad: string;
+};
+
+export type HistoryAndId = {
+  id: string;
+  data: History;
+};

@@ -1,7 +1,7 @@
 import { FormControlLabel, Input, Radio, RadioGroup } from "@material-ui/core";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { createUserHistory, UserInfo } from "../apis/firebase";
+import { createUserHistory } from "../apis/firebase";
 import {
   StyledColumn,
   StyledEmptyDiv,
@@ -10,6 +10,7 @@ import {
 import NextButton from "../components/NextButton";
 import CustomPath from "../constants/path";
 import customFonts from "../constants/styles/fonts";
+import { UserInfo } from "../constants/types";
 import { getColorTestFeelingCookie } from "../utils/cookie";
 
 type QuestionNo = 0 | 1 | 2 | 3 | 4 | 5;
