@@ -1,46 +1,43 @@
-# Getting Started with Create React App
+# HCI User Study 1
+2021-1학기 HCI 과목 프로젝트 1로 제작했습니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## “내 눈은 몇 살일까요”로 위장한 fake 웹사이트
 
-## Available Scripts
+- [https://hci-proj-1.web.app/](https://hci-proj-1.web.app/)
+- 실제 프로젝트 주제: **모바일 환경**에서 다크모드의 가독성 분석
 
-In the project directory, you can run:
+### 프로젝트 목표
 
-### `yarn start`
+1. 다크모드와 라이트모드에서 가독성을 비교합니다.
+    - 세부 비교 사항: 눈의 피로도, 글자를 정확하게 식별할 수 있는 정도
+2. 다크모드에서 글을 읽을 때 텍스트의 명도가 어느정도일 때를 가장 선호하는지 알아봅니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 구현 내용
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+간단한 웹사이트를 제작했습니다.
 
-### `yarn test`
+On time, within a budget을 위해 최대한 구현 속도가 빠른 방법을 택했습니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Firebase firestore, React typescript
 
-### `yarn build`
+### 유저 스터디
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+기간: 약 1주일
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 총 81개의 유효한 응답이 들어왔습니다.
+- Firebase에서 따로 데이터를 export해주는 기능이 없기 때문에 해당 기능을 하는 코드를 작성하여 엑셀로 데이터를 추출했습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 유저 스터디 결과
+- 요약
+    - 상황에 따라 ’더 효과적인’ 모드가 달랐습니다.
+    - (교수님 피드백 시간에서도 보통 둘가지를 비교할 때는 무조건 한쪽이 베스트라는 결론이 나오기보단 case by case인 경우가 대부분이라고 하셔서 안심했습니다.)
+- 정확도
+    - 긴 글을 읽을 때 정확도가 높은 쪽: 🌞 lightmode 
+    - 단어를 순간적으로 식별할 때 정확도가 높은 쪽: 🤔 이번 실험으로 비교 불가
+- 눈의 피로도
+    - 긴 글을 읽을 때 피로도가 덜한 쪽: 🌚 darkmode
+    - 단어를 순간적으로 식별할 때 피로도가 덜한 쪽: 🌞 lightmode
+- 다크모드에서 텍스트 명도에 대한 선호도 top 1, 2
+ ![image](https://user-images.githubusercontent.com/45515332/116812101-e1133880-ab87-11eb-9d3e-d6aa7d0f107d.png)
+ 
+- 자세한 결과는 블로그에 업데이트할 예정입니다.
