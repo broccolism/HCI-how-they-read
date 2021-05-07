@@ -6,6 +6,7 @@ enum CustomPath {
   SPEED_TEST = "/speed",
   QUESTION = "/questions",
   RESULT = "/result",
+  SECRET = "/secretpaththisisnotavailableno",
 }
 
 export default CustomPath;
