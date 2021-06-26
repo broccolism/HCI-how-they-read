@@ -40,4 +40,4 @@ On time, within a budget을 위해 최대한 구현 속도가 빠른 방법을 �
 - 다크모드에서 텍스트 명도에 대한 선호도 top 1, 2
  ![image](https://user-images.githubusercontent.com/45515332/116812101-e1133880-ab87-11eb-9d3e-d6aa7d0f107d.png)
  
-- 자세한 결과는 [블로그](https://velog.io/@broccolism)에 업데이트할 예정입니다.
+- 자세한 결과는 [블로그](https://velog.io/@broccolism)에 포스팅 되었습니다. [✨보러가기✨](https://velog.io/@broccolism/%EB%8B%A4%ED%81%AC%EB%AA%A8%EB%93%9C-%EC%A7%84%EC%A7%9C%EB%A1%9C-%EB%88%88%EC%97%90-%EC%A2%8B%EC%9D%84%EA%B9%8C-HCI-%EC%9C%A0%EC%A0%80-%EC%8A%A4%ED%84%B0%EB%94%94-3-%EA%B2%B0%EA%B3%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D)
